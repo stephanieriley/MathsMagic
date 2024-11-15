@@ -38,33 +38,5 @@ function(input, output, session) {
                             na = "")
             }
         )
-    
-    # eventReactive(input$genButton, {
-    #     #Generate the cards, stored as a data frame
-    #     cards<- reactive({
-    #         generateCards(input$ncards, altogether = T)
-    #     })
-    #     
-    #     #Render the data frame as a table
-    #     output$cardmat<- renderTable(cards(), colnames = F)
-    #     
-    #     #Export cards as csv
-    #     #Get data frame containing all cards
-    #     allcards<- reactive({
-    #         generateCards(input$ncards, altogether = T)
-    #     })
-    #     
-    #     #Export those cards
-    #     output$export <- downloadHandler(
-    #         filename = function(){"MagicWithMaths.csv"}, 
-    #         content = function(fname){
-    #             write.table(allcards(), fname, sep = ",", 
-    #                         col.names = F, row.names = F, 
-    #                         na = "")
-    #         }
-    #     )
-    # })
-
-    
 
 }
