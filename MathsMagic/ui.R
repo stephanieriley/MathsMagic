@@ -8,26 +8,28 @@
 #
 
 library(shiny)
+library(DT)
 
 # Define UI for application that draws a histogram
 fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Magic with Maths!"),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar with a numeric input for number of cards required
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            numericInput("ncards", "Number of cards:", 3, min = 3, max = 100),
+            actionButton("genButton", "Generate")
         ),
 
-        # Show a plot of the generated distribution
+        # Show the cards required for the trick and give option to export
         mainPanel(
-            plotOutput("distPlot")
+            # Display the cards
+            tableOutput("cardmat"), 
+            
+            # Button to export the cards
+            downloadButton("export", "Export to csv")
         )
     )
 )

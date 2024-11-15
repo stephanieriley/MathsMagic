@@ -8,21 +8,63 @@
 #
 
 library(shiny)
+library(DT)
 
 # Define server logic required to draw a histogram
 function(input, output, session) {
 
-    output$distPlot <- renderPlot({
-
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histogram of waiting times')
-
+    source("../R/int2bin.R", local = TRUE)
+    source("../R/generateCards.R", local = TRUE)#
+    
+    cards<- eventReactive(input$genButton, {
+        generateCards(input$ncards, altogether = T)
     })
+    
+    #Render the data frame as a table
+        output$cardmat<- renderTable(cards(), colnames = F)
+
+        #Export cards as csv
+        #Get data frame containing all cards
+        allcards<- reactive({
+            generateCards(input$ncards, altogether = T)
+        })
+
+        #Export those cards
+        output$export <- downloadHandler(
+            filename = function(){"MagicWithMaths.csv"},
+            content = function(fname){
+                write.table(allcards(), fname, sep = ",",
+                            col.names = F, row.names = F,
+                            na = "")
+            }
+        )
+    
+    # eventReactive(input$genButton, {
+    #     #Generate the cards, stored as a data frame
+    #     cards<- reactive({
+    #         generateCards(input$ncards, altogether = T)
+    #     })
+    #     
+    #     #Render the data frame as a table
+    #     output$cardmat<- renderTable(cards(), colnames = F)
+    #     
+    #     #Export cards as csv
+    #     #Get data frame containing all cards
+    #     allcards<- reactive({
+    #         generateCards(input$ncards, altogether = T)
+    #     })
+    #     
+    #     #Export those cards
+    #     output$export <- downloadHandler(
+    #         filename = function(){"MagicWithMaths.csv"}, 
+    #         content = function(fname){
+    #             write.table(allcards(), fname, sep = ",", 
+    #                         col.names = F, row.names = F, 
+    #                         na = "")
+    #         }
+    #     )
+    # })
+
+    
 
 }
