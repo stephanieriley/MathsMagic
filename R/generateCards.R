@@ -7,7 +7,7 @@ generateCards<- function(ncards, altogether = F){
   maxvalue<- 2^ncards - 1
   integers<- 1:maxvalue
   
-  binarymatrix<- t(sapply(integers, int2bin, bits = 6, reverse = T))
+  binarymatrix<- t(sapply(integers, int2bin, bits = 20, reverse = T))
   colnames(binarymatrix)<- 2^(1:ncol(binarymatrix))
   
   if(altogether){
