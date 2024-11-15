@@ -12,7 +12,7 @@ The "magician" asks the unsuspecting friend or family member to pick a number on
 
 The so-called magician keeps the cards that contain the number that their victims are thinking of to the side. They then sum the first number of each card together, to guess the number. 
 
-*How does it work?" The answer is binary numbers!
+*How does it work?* The answer is binary numbers!
 
 ### Do the trick yourself
 
