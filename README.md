@@ -16,4 +16,4 @@ The so-called magician keeps the cards that contain the number that their victim
 
 ### Do the trick yourself
 
-If you want to impress people with this trick, this Shiny app will generate as many (or as few) cards as you would like.
+If you want to impress people with this trick, [this Shiny app](https://sriley3.shinyapps.io/MathsMagic/) will generate as many (or as few) cards as you would like.
