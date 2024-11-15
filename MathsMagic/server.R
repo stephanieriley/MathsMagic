@@ -12,8 +12,8 @@ library(shiny)
 # Define server logic required to draw a histogram
 function(input, output, session) {
 
-    source("../R/int2bin.R", local = TRUE)
-    source("../R/generateCards.R", local = TRUE)#
+    source("R/int2bin.R", local = TRUE)
+    source("R/generateCards.R", local = TRUE)#
     
     cards<- eventReactive(input$genButton, {
         generateCards(input$ncards, altogether = T)
